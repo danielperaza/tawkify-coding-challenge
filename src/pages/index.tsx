@@ -24,7 +24,7 @@ export default function Home() {
       <Container>
         <div>
           <header className="text-center">
-            <Image src="/../public/logo.png" width="200" height="200" />
+            <Image src="/logo.png" width="200" height="200" />
             <h1>Tawkify Coding Challenge</h1>
           </header>
           <main>
