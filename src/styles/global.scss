@@ -1,0 +1,35 @@
+html, body {
+  height: 100%;
+  font-family: var(--default-font), sans-serif;
+  background-color: var(--light-gray);
+}
+
+#__next {
+  height: 100%;
+}
+
+h1 {
+  font-size: 3em;
+}
+
+.text-center {
+  text-align: center;
+}
+
+@for $i from 1 through 10  {
+  .pt-#{$i} {
+    padding-top: $i * 1rem;
+  }
+
+  .mt-#{$i} {
+    margin-top: $i * 1rem;
+  }
+
+  .ml-#{$i} {
+    margin-left: $i * 1rem;
+  }
+
+  .pl-#{$i} {
+    padding-left: $i * 1rem;
+  }
+}
