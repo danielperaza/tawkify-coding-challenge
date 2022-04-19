@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 
 const ListInputStyles = styled.div`
   border-left: 0 none;
@@ -57,7 +57,9 @@ export interface TListInputProps {
   placeholder: string
   required?: boolean
   disabled?: boolean
+  items?: string[]
   max?: number
+  onChange?: (items: string[]) => void
 }
 
 const ListInput: React.FC<TListInputProps> = ({
@@ -65,17 +67,23 @@ const ListInput: React.FC<TListInputProps> = ({
   placeholder,
   required,
   disabled,
-  max
+  max,
+  onChange,
+  items = []
 }) => {
-  const [items, setItems] = useState<string[]>([]);
   const [errorMessage, setErrorMessage] = useState<string>('')
+
   const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.code === 'Enter') {
       event.preventDefault()
       const input = (event.target as HTMLInputElement)
       const value = input.value
-      if (value && (!max || Array.isArray(items) && items.length + 1 <= max)) {
-        setItems(Array.isArray(items) ? [...items, value] : [value])
+      if (
+        value &&
+        (!max || Array.isArray(items) && items.length + 1 <= max) &&
+        typeof onChange !== 'undefined'
+      ) {
+        onChange(Array.isArray(items) ? [...items, value] : [value])
         input.value = ''
       } else if (max && items.length + 1 > max) {
         setErrorMessage('Maximum number of items reached')
@@ -84,7 +92,9 @@ const ListInput: React.FC<TListInputProps> = ({
   }
 
   const handleRemove = (index: number) => {
-    setItems(items?.filter((elem, i) => i !== index))
+    if (typeof onChange !== 'undefined') {
+      onChange(items?.filter((elem, i) => i !== index))
+    }
   }
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -117,7 +127,7 @@ const ListInput: React.FC<TListInputProps> = ({
             <li key={key}>
               <span>
                 {item}
-                <button onClick={() => handleRemove(key)} className="items-list__remove-btn">&times;</button>
+                {!disabled && (<button onClick={() => handleRemove(key)} className="items-list__remove-btn">&times;</button>)}
               </span>
             </li>
           ))}
