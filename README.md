@@ -1,34 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tawkify Coding Challenge
 
-## Getting Started
+## Overview
+This app is built using NextJS and React. To deploy locally, refer to the [NextJS README](nextjs-README.md) and run
+`yarn dev` in your terminal.
 
-First, run the development server:
+## Rationale
+NextJS is now the preferred way of creating React Apps since Create React App is no longer maintained. It also provides
+some advantages such as Server Side Rendering and routing out of the box, so that's why it's also my preferred way of
+working with React.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+NextJS also provides API routes, which I used for creating a RESTful API for saving the list items data. This helped me
+to save time as I would have needed to set up a separate server otherwise.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+I also chose to use `styled-components` as it's one of the community's preferred choices for embedding CSS-in-JS at the
+moment. Styled Components also support server side rendering and they provide a good way of avoiding clashes among CSS
+selectors when components are shared and reused throughout an App.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Some global styles in SASS can also be found in the src/styles folder, though. As Styled Components's CSS pre-processor
+is a very limited version of SASS, and I also wanted to showcase with this tool, I decided to
+put some SCSS files there as well.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+The app does not intend to be perfect nor is a production-ready code, but rather a demonstration
+of my skills, so you can get the picture.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Netlify
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+I deployed the app to https://dashing-syrniki-8beec2.netlify.app/. However, it seems like the RESTful API is not working
+there, probably because I didn't use a database but just a simple JSON file to store the data instead,
+there may be some filesystem permission issues there. Note that I decided to use this JSON file because it seemed like
+the most simple way of persisting data and the task did not require to use any particular database.
