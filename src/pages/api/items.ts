@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { accessSync, constants, readFileSync, writeFileSync } from 'fs'
 import { resolve } from 'path'
 
-const dbFile = resolve(__dirname + '/../../db.json')
+const dbFile = resolve('/tmp/db.json')
 
 const handleGet = (req: NextApiRequest, res: NextApiResponse) => {
   try {
